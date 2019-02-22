@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System.Text.RegularExpressions;
 
 namespace mantis_tests
 {
@@ -19,9 +20,33 @@ namespace mantis_tests
             OpenRegistrationForm();
             FillRegistrationForm(account);
             SubmitRegistration();
+            String url = GetConfirmationUrl(account);
+            FillPasswordForm(url);
+            SubmitPasswordForm();
         }
 
-       
+        private string GetConfirmationUrl(AccountData account)
+        {
+            String message = manager.Mail.GetLastMail(account);
+            Match match = Regex.Match(message, @"http://\S*");
+            return match.Value;
+
+
+        }
+        private void FillPasswordForm(string url)
+        {
+            throw new NotImplementedException();
+        }
+        private void SubmitPasswordForm()
+        {
+            throw new NotImplementedException();
+        }
+
+        
+
+        
+
+
         private void OpenMainPage()
         {
             manager.Driver.Url = "http://localhost/mantisbt-2.19.0/login_page.php";
