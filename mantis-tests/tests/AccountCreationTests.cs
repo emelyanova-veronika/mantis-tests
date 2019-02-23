@@ -24,9 +24,9 @@ namespace mantis_tests
         {
             AccountData account = new AccountData()
             {
-                Name = "testuser2",
+                Name = "testuser113",
                 Password = "password",
-                Email = "testuser2@localhost.localdomain"
+                Email = "testuser113@localhost.localdomain"
             };
 
             app.James.Delete(account);
@@ -42,3 +42,4 @@ namespace mantis_tests
         }
     }
 }
+////config_inc.php

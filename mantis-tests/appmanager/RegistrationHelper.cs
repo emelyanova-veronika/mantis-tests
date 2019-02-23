@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
-using System.Text.RegularExpressions;
+
 
 namespace mantis_tests
 {
@@ -21,7 +22,7 @@ namespace mantis_tests
             FillRegistrationForm(account);
             SubmitRegistration();
             String url = GetConfirmationUrl(account);
-            FillPasswordForm(url);
+            FillPasswordForm(url, account);
             SubmitPasswordForm();
         }
 
@@ -33,13 +34,16 @@ namespace mantis_tests
 
 
         }
-        private void FillPasswordForm(string url)
+        private void FillPasswordForm(string url, AccountData account)
         {
-            throw new NotImplementedException();
+            driver.Url = url;
+            driver.FindElement(By.Name("realname")).SendKeys(account.Name);
+            driver.FindElement(By.Name("password")).SendKeys(account.Password);
+            driver.FindElement(By.Name("password_confirm")).SendKeys(account.Password);
         }
         private void SubmitPasswordForm()
         {
-            throw new NotImplementedException();
+            driver.FindElement(By.XPath("//button[@type='submit']")).Click();
         }
 
         
