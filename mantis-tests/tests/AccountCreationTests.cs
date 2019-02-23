@@ -42,4 +42,3 @@ namespace mantis_tests
         }
     }
 }
-////config_inc.php
